@@ -47,7 +47,7 @@ def cleandf(df,fkeyCol):
         print("프로그램을 종료합니다 아무키나 누르세요",end="")
         input()
         raise SystemExit
-        
+    df[fkeyCol+"_origin"] = df[fkeyCol]
     df[fkeyCol] = df[fkeyCol].map(lambda x : parse.unquote(x))
     df = df[~ (df[fkeyCol].isnull())]
     df[fkeyCol] = df[fkeyCol].map(lambda x : str(x).strip().lower())
