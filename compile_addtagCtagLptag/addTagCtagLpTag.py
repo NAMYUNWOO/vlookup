@@ -34,7 +34,9 @@ def getRow(arri):
 
 def findtag(x,head):
     try:
-        res = re.findall(head+"=([^\&]+)\&",x)
+        urlvars = re.findall("&[a-z|A-Z]+=",x) + ["&"]
+        nextHead = urlvars[urlvars.index("&"+head+"=") + 1]
+        res = re.findall(head+"=(.*)\&"+nextHead[1:],x)
         return str(res[0]).strip()
     except:
         return ""
